@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   width: 100%;
-  height: 100vh;
 }
 
 .pokemonCardContainer {
@@ -9,7 +8,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .cardName {
@@ -29,4 +28,20 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.btn button {
+  padding: 13px 32px;
+  background-color: rgb(196, 41, 46);
+  border: none;
+  box-shadow: 7px 5px 17px 1px #777777;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn button:hover {
+  transform: translateY(5px);
+  box-shadow: none;
 }

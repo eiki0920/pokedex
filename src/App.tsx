@@ -1,25 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import "./App.css";
 import Card from "./components/Card";
 import { getAllPokemon, getPokemon } from "./utils/pokemon";
 import Navbar from "./components/Navbar";
 
-function App() {
+export const App: FC = () => {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [pokemonData, setPokemonData] = useState([]);
-  const [nextURL, setNextURL] = useState("");
-  const [prevURL, setPrevURL] = useState("");
+  const [nextURL, setNextURL] = useState<string>("");
+  const [prevURL, setPrevURL] = useState<string>("");
 
   useEffect(() => {
     const fetchPokemonData = async () => {
       // 全てのポケモンデータを取得
-      let res = await getAllPokemon(initialURL);
+      let res: any = await getAllPokemon(initialURL);
+      // console.log(res);
 
       // 各ポケモンの詳細データを取得
       loadPokemon(res.results);
+      console.log(res.results);
 
-      // console.log(res.results);
       setNextURL(res.next);
       setPrevURL(res.previous);
       setLoading(false);
@@ -42,7 +43,7 @@ function App() {
   const handlePrevPage = async () => {
     if (!prevURL) return;
     setLoading(true);
-    let data = await getAllPokemon(prevURL);
+    let data: any = await getAllPokemon(prevURL);
     console.log(data);
     await loadPokemon(data.results);
     setNextURL(data.next);
@@ -52,7 +53,7 @@ function App() {
 
   const handleNextPage = async () => {
     setLoading(true);
-    let data = await getAllPokemon(nextURL);
+    let data: any = await getAllPokemon(nextURL);
     // console.log(data);
     await loadPokemon(data.results);
     setNextURL(data.next);
@@ -61,7 +62,7 @@ function App() {
   };
 
   return (
-    <>
+    <div>
       <Navbar />
       <div className="App">
         {loading ? (
@@ -80,8 +81,8 @@ function App() {
           </>
         )}
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default App;

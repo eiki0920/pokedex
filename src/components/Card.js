@@ -1,13 +1,17 @@
 import React from "react";
+import "./style/card.css";
 
 const Card = (props) => {
   const { pokemon } = props;
+
   return (
     <div className="card">
       <div className="cardImg">
         <img src={pokemon.sprites.front_default} alt=""></img>
       </div>
+
       <h3 className="cardName">{pokemon.name}</h3>
+
       <div className="cardTypes">
         <div>タイプ</div>
         {pokemon.types.map((type) => {
@@ -26,9 +30,7 @@ const Card = (props) => {
           <p className="title">高さ：{pokemon.height}</p>
         </div>
         <div className="cardData">
-          <p className="title">
-            アビリティ：{pokemon.abilities[0].ability.name}
-          </p>
+          <p className="title">特性：{pokemon.abilities[0].ability.name}</p>
         </div>
       </div>
     </div>
